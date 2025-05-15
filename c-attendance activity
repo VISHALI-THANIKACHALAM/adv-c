@@ -1,0 +1,71 @@
+```
+#include<stdio.h>
+#include <stdlib.h>
+struct Node   
+{  
+char data;  
+struct Node *next;  
+}*head;
+void push(char data)  
+{  
+    struct Node *ptr=(struct Node *)malloc(sizeof(struct Node));   
+    if(head==NULL)  
+    {         
+        ptr->data=data;  
+        ptr->next=NULL;  
+        head=ptr;  
+    }   
+    else   
+    {  
+        ptr->data=data;  
+        ptr->next=head;  
+        head=ptr;  
+ }  
+}  
+void pop()  
+{  
+    struct Node *ptr;  
+    if(head==NULL)  
+    {  
+        printf("stack is empty\n");  
+    }  
+    else  
+    {  
+        ptr=head;  
+        head=ptr->next;  
+        free(ptr);  
+    }  
+}  
+void display()  
+{  
+    struct Node *ptr;  
+    ptr=head;  
+    printf("stack:"); 
+    while(ptr!=NULL)  
+    {  
+        printf("%c ",ptr->data);  
+        ptr=ptr->next;  
+    }  
+    printf("\n");
+}  
+void peek()
+{
+    printf("\nstack top:");
+    printf("%c\n",head->data);
+}
+int main()
+{
+    push('a');
+    display(); //stack: a
+    push('b');
+    display(); //stack: b a
+    push('c');
+    display(); //stack: c b a
+    peek();    //stack top: c
+    pop();
+    display(); //stack: b a
+    pop();
+    display();
+}
+```
+
